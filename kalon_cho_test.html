@@ -15,120 +15,356 @@
 --selected-bg:#f0ebe4;--selected-border:#b5845a;
 --radius:10px;--radius-sm:6px;
 }
-body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.page-header{background:var(--surface);border-bottom:1px solid var(--border);padding:2rem;text-align:center}
-.school-name{font-family:'Noto Serif JP',serif;font-size:11px;letter-spacing:0.2em;color:var(--accent);margin-bottom:10px}
-.page-header h1{font-family:'Noto Serif JP',serif;font-size:22px;margin-bottom:12px}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0}
+.page-header{background:var(--surface);border-bottom:1px solid var(--border);padding:2rem 2rem 1.5rem;text-align:center}
+.school-name{font-family:'Noto Serif JP',serif;font-size:11px;letter-spacing:0.2em;color:var(--accent);text-transform:uppercase;margin-bottom:10px}
+.page-header h1{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:500;color:var(--text);margin-bottom:12px}
 .meta-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.meta-badge{font-size:12px;padding:4px 14px;border-radius:99px;border:1px solid var(--border-strong);color:var(--text-muted)}
-.main{max-width:760px;margin:0 auto;padding:2rem}
-.section-label{font-size:13px;color:var(--accent);margin:2rem 0 1rem;border-bottom:1px solid var(--border)}
-.question-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:14px}
-.q-text{font-size:15px;margin-bottom:12px}
-.choice{padding:10px;border:1px solid var(--border);margin-bottom:6px;cursor:pointer}
-.choice.selected{background:#f0ebe4}
-.choice.correct{background:#eef6f1}
-.choice.wrong{background:#fdf0ec}
-.fill-input{width:100%;padding:10px;border:1px solid var(--border)}
-.ox-btn{padding:10px;border:1px solid var(--border);cursor:pointer;margin-right:10px}
-.btn{padding:12px 20px;margin-top:20px;cursor:pointer}
-.score-card{margin-top:20px}
-.review{margin-top:20px}
-.review-item{background:#fdf0ec;padding:10px;margin-bottom:8px}
+.meta-badge{font-size:12px;padding:4px 14px;border-radius:99px;border:1px solid var(--border-strong);color:var(--text-muted);background:var(--bg)}
+.main{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.section-label{font-family:'Noto Serif JP',serif;font-size:13px;color:var(--accent);letter-spacing:0.1em;margin:2.5rem 0 1rem;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.question-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:14px}
+.q-header{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.q-num{font-size:11px;font-weight:500;color:var(--accent);min-width:30px;padding-top:3px;font-family:'Noto Serif JP',serif}
+.q-text{font-size:15px;line-height:1.7;color:var(--text);flex:1}
+.q-tags{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.tag{font-size:10px;padding:2px 8px;border-radius:99px;border:1px solid var(--border);color:var(--text-muted);white-space:nowrap}
+.tag-basic{background:#eef6f1;color:#4a7c59;border-color:#c0ddc9}
+.tag-advance{background:#f0edfb;color:#6b52b0;border-color:#c9beed}
+.tag-master{background:#fdf0ec;color:#a0422a;border-color:#e8c0b4}
+.choices{display:flex;flex-direction:column;gap:8px;padding-left:42px}
+.choice{display:flex;align-items:flex-start;gap:10px;padding:11px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;background:var(--surface);transition:all 0.15s;user-select:none}
+.choice:hover{background:var(--selected-bg);border-color:var(--border-strong)}
+.choice.selected{background:var(--selected-bg);border-color:var(--selected-border)}
+.choice.correct{background:var(--correct-bg);border-color:var(--correct)}
+.choice.wrong{background:var(--wrong-bg);border-color:var(--wrong)}
+.choice-label{font-size:12px;font-weight:500;color:var(--text-muted);min-width:18px;padding-top:1px}
+.choice.correct .choice-label{color:var(--correct)}
+.choice.wrong .choice-label{color:var(--wrong)}
+.choice-text{font-size:14px;color:var(--text);line-height:1.5}
+.fill-wrap{padding-left:42px}
+.fill-input{width:100%;padding:11px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);font-size:14px;color:var(--text);background:var(--surface);font-family:'Noto Sans JP',sans-serif;outline:none;transition:border-color 0.15s}
+.fill-input:focus{border-color:var(--accent)}
+.fill-input.correct{border-color:var(--correct);background:var(--correct-bg)}
+.fill-input.wrong{border-color:var(--wrong);background:var(--wrong-bg)}
+.ox-choices{display:flex;gap:10px;padding-left:42px}
+.ox-btn{flex:1;padding:14px;text-align:center;border-radius:var(--radius-sm);border:1px solid var(--border);cursor:pointer;font-size:22px;background:var(--surface);transition:all 0.15s;user-select:none}
+.ox-btn:hover{background:var(--selected-bg);border-color:var(--border-strong)}
+.ox-btn.selected-o{background:var(--selected-bg);border-color:var(--selected-border)}
+.ox-btn.selected-x{background:var(--selected-bg);border-color:var(--selected-border)}
+.ox-btn.correct{background:var(--correct-bg);border-color:var(--correct)}
+.ox-btn.wrong-selected{background:var(--wrong-bg);border-color:var(--wrong)}
+.feedback{margin-top:10px;padding-left:42px;font-size:13px;line-height:1.6;display:none}
+.feedback.show{display:block}
+.feedback.ok{color:var(--correct)}
+.feedback.ng{color:var(--wrong)}
+.actions{display:flex;gap:12px;margin-top:2.5rem;flex-wrap:wrap}
+.btn{padding:12px 28px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);font-size:14px;cursor:pointer;background:var(--surface);color:var(--text);font-family:'Noto Sans JP',sans-serif;transition:all 0.15s}
+.btn:hover{background:var(--selected-bg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#9e6f4a}
+.score-card{display:none;margin-top:2rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem}
+.score-card.show{display:block}
+.score-top{text-align:center;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.score-label{font-size:12px;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:8px}
+.score-number{font-family:'Noto Serif JP',serif;font-size:42px;font-weight:500;color:var(--text)}
+.score-pct{font-size:14px;color:var(--text-muted);margin-top:4px}
+.score-message{margin-top:10px;font-size:14px;font-weight:500}
+.score-message.pass{color:var(--correct)}
+.score-message.fail{color:var(--wrong)}
+.result-bar{height:6px;border-radius:3px;background:var(--border);margin-top:1rem;overflow:hidden}
+.result-fill{height:100%;border-radius:3px;background:var(--accent);transition:width 0.8s ease}
+.review-section{margin-top:2rem}
+.review-title{font-family:'Noto Serif JP',serif;font-size:15px;color:var(--wrong);margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.review-item{background:var(--wrong-bg);border:1px solid #e8c0b4;border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px}
+.review-q{font-size:13px;color:var(--text);margin-bottom:8px;line-height:1.6}
+.review-q strong{color:var(--wrong)}
+.review-your{font-size:13px;color:var(--wrong);line-height:1.6;margin-bottom:4px}
+.review-your strong{color:var(--wrong)}
+.review-a{font-size:13px;color:var(--correct);line-height:1.6}
+.review-a strong{color:var(--correct)}
+.perfect-msg{text-align:center;padding:1.5rem;font-size:14px;color:var(--correct);font-family:'Noto Serif JP',serif}
+@media(max-width:600px){
+.page-header{padding:1.5rem 1rem 1.25rem}
+.main{padding:1.5rem 1rem 3rem}
+.q-tags{display:none}
+.score-number{font-size:32px}
+}
 </style>
 </head>
 <body>
-
 <div class="page-header">
-<p class="school-name">Kalon Cho School</p>
-<h1>認定講師テスト — 筆記</h1>
-<div class="meta-row">
-<span class="meta-badge">30問</span>
-<span class="meta-badge">制限時間 60分</span>
+  <p class="school-name">Kalon Cho School</p>
+  <h1>認定講師テスト — 筆記</h1>
+  <div class="meta-row">
+    <span class="meta-badge">30問</span>
+    <span class="meta-badge">制限時間 60分</span>
+    <span class="meta-badge">選択15問 ／ 穴埋め10問 ／ ○×5問</span>
+  </div>
 </div>
-</div>
-
 <div class="main">
-<div id="quiz"></div>
-<button class="btn" onclick="grade()">採点する</button>
-<div id="result" class="score-card"></div>
-<div id="review" class="review"></div>
+  <div id="quiz-body"></div>
+  <div class="actions">
+    <button class="btn primary" onclick="gradeAll()">採点する</button>
+    <button class="btn" onclick="resetAll()">リセット</button>
+  </div>
+  <div class="score-card" id="score-card">
+    <div class="score-top">
+      <p class="score-label">SCORE</p>
+      <p class="score-number" id="score-number">—</p>
+      <p class="score-pct" id="score-pct"></p>
+      <p class="score-message" id="score-message"></p>
+      <div class="result-bar"><div class="result-fill" id="result-fill" style="width:0%"></div></div>
+    </div>
+    <div class="review-section" id="review-section"></div>
+  </div>
 </div>
-
 <script>
-const questions = [
-{q:"消化器官の中で、栄養素の約90%が吸収される場所は？",choices:["胃","小腸","大腸","食道"],a:1},
-{q:"美腸4大食品に含まれないものは？",choices:["発酵食品","食物繊維","オリゴ糖","酵素ドリンク"],a:3},
-{q:"理想の便は？",choices:["コロコロ","バナナ状","水","泥"],a:1},
-{q:"腸内環境を悪化させるものを1つ書け",type:"fill",keywords:["砂糖","小麦","アルコール","添加物"]},
-{q:"腸活でできることは？",choices:["病気を治す","免疫サポート","診断","薬代わり"],a:1},
-{q:"小腸の長さは？",choices:["1m","3m","6m","10m"],a:2},
-{q:"運動は腸に良い。○×",ox:true},
-{q:"オメガ3が多いのは？",choices:["バター","青魚","ごま油","サラダ油"],a:1},
-{q:"最初のSTEPは？",type:"fill",keywords:["入れない"]},
-{q:"器質性便秘は腸活で治る。○×",ox:false},
-// 省略せず30問分（※ここは実際は全部入ってる想定）
+const questions=[
+  {section:"ベーシック講座",course:"basic",type:"choice",
+   q:"消化器官の中で、栄養素の約90%が吸収される主な場所はどこか。",
+   choices:["胃","小腸","大腸","食道"],answer:1},
+  {section:null,course:"basic",type:"choice",
+   q:"美腸になる4大食品に含まれないものはどれか。",
+   choices:["発酵食品","食物繊維","オリゴ糖","酵素ドリンク"],answer:3},
+  {section:null,course:"basic",type:"choice",
+   q:"ブリストルスケールで「理想的な便」とされる形状はどれか。",
+   choices:["硬いコロコロ便","バナナ状のなめらかな便","泥状の軟便","水様便"],answer:1},
+  {section:null,course:"basic",type:"fill",
+   q:"腸内環境を悪化させる要因として、過剰摂取が問題とされる食品成分を2つ答えてください。",
+   answer:"例：白砂糖・小麦粉 / アルコール・添加物 など",
+   keywords:["白砂糖","小麦粉","アルコール","添加物","抗生物質","トランス脂肪酸","精製","グルテン"]},
+  {section:null,course:"basic",type:"choice",
+   q:"腸活でできることとして正しいものはどれか。",
+   choices:["器質性便秘を完全に治す","腸内環境を整えることで免疫機能をサポートする","腸の病気を診断する","下剤の代わりに使う"],answer:1},
+  {section:null,course:"basic",type:"choice",
+   q:"体の中で最も長い臓器とも言われる小腸の長さはどれくらいか。",
+   choices:["約1〜2m","約3〜4m","約6〜7m","約10m以上"],answer:2},
+  {section:null,course:"basic",type:"ox",
+   q:"腸を支える筋肉を強化するために、適度な運動は腸活の一環として有効である。",
+   answer:true},
+  {section:null,course:"basic",type:"choice",
+   q:"必須脂肪酸として腸活に重要なオメガ3系脂肪酸が豊富に含まれる食品はどれか。",
+   choices:["ごま油・大豆油","バター・ラード","青魚・亜麻仁油","オリーブオイル・ひまわり油"],answer:2},
+  {section:null,course:"basic",type:"fill",
+   q:"美腸5STEPにおいて、まず最初に必要なステップは何か。",
+   answer:"入れない",keywords:["入れない","悪いものを入れない"]},
+  {section:null,course:"basic",type:"ox",
+   q:"器質性便秘は腸の構造自体に問題がないため、腸活だけで改善が期待できる。",
+   answer:false},
+  {section:"アドバンス講座",course:"advance",type:"choice",
+   q:"「第二の脳」と呼ばれる腸に最も多く存在し、幸福感や気分に関わる神経伝達物質はどれか。",
+   choices:["ドーパミン","アドレナリン","セロトニン","コルチゾール"],answer:2},
+  {section:null,course:"advance",type:"choice",
+   q:"脳と腸が相互に影響し合う関係を示す概念はどれか。",
+   choices:["ホメオスタシス","脳腸相関","門脈循環","リーキーガット"],answer:1},
+  {section:null,course:"advance",type:"fill",
+   q:"自律神経の中で、「休息・消化」を担い腸の蠕動運動を活性化する神経は（　　）神経である。",
+   answer:"副交感",keywords:["副交感"]},
+  {section:null,course:"advance",type:"choice",
+   q:"女性ホルモンのうち、エストロゲンの分泌が低下する時期（黄体期）に便秘が起こりやすい主な理由はどれか。",
+   choices:["腸の蠕動運動が亢進するため","プロゲステロンが腸の動きを抑制するため","食欲が低下するため","水分摂取量が増加するため"],answer:1},
+  {section:null,course:"advance",type:"fill",
+   q:"腸と肝臓を直接つなぐ血管系を（　　）循環という。",
+   answer:"門脈",keywords:["門脈"]},
+  {section:null,course:"advance",type:"choice",
+   q:"むくみと腸内環境の関係として正しいものはどれか。",
+   choices:["腸内環境は浮腫（むくみ）と無関係である","腸内環境の悪化により血流・リンパの流れが滞り、むくみに影響することがある","水分を摂りすぎると腸内細菌が減少する","むくみは常に心臓疾患が原因である"],answer:1},
+  {section:null,course:"advance",type:"ox",
+   q:"高齢者の便秘は、腸の蠕動運動の低下や水分摂取量の減少などが主な原因の一つである。",
+   answer:true},
+  {section:null,course:"advance",type:"fill",
+   q:"腸活とダイエットの関係として、腸内細菌が産生する（　　）は代謝に関わり、エネルギー消費や体重管理に影響するとされている。",
+   answer:"短鎖脂肪酸",keywords:["短鎖脂肪酸"]},
+  {section:null,course:"advance",type:"choice",
+   q:"炎症・血糖値・腸内環境の関係として正しいものはどれか。",
+   choices:["血糖値は腸内環境と無関係である","腸内環境が乱れると慢性炎症が起こりやすく、インスリン抵抗性にも影響しうる","善玉菌が増えると血糖値が上昇する","食物繊維は血糖値を急上昇させる"],answer:1},
+  {section:null,course:"advance",type:"ox",
+   q:"迷走神経は、脳と腸をつなぐ神経であり、ストレスが腸に影響を与える経路の一つである。",
+   answer:true},
+  {section:"マスター講座",course:"master",type:"choice",
+   q:"短鎖脂肪酸のうち、大腸のエネルギー源となり、腸粘膜の修復や炎症抑制にも重要な役割を果たすものはどれか。",
+   choices:["酢酸","プロピオン酸","酪酸","乳酸"],answer:2},
+  {section:null,course:"master",type:"choice",
+   q:"腸内細菌の理想のバランス（善玉菌：悪玉菌：日和見菌）として正しいものはどれか。",
+   choices:["1:1:8","2:1:7","3:3:4","5:2:3"],answer:1},
+  {section:null,course:"master",type:"fill",
+   q:"短鎖脂肪酸は、腸内細菌が（　　）やオリゴ糖を発酵分解することで産生される。",
+   answer:"食物繊維",keywords:["食物繊維"]},
+  {section:null,course:"master",type:"choice",
+   q:"善玉菌が生み出す代謝物を直接取り入れることで腸内環境にアプローチするという新しい考え方を何というか。",
+   choices:["プレバイオティクス","プロバイオティクス","ポストバイオティクス","シンバイオティクス"],answer:2},
+  {section:null,course:"master",type:"fill",
+   q:"腸の粘膜に小さな穴や隙間ができ、未消化物や毒素が血液中に漏れ出してしまう状態を（　　）症候群という。",
+   answer:"リーキーガット",keywords:["リーキーガット","腸漏れ"]},
+  {section:null,course:"master",type:"choice",
+   q:"IBSとIBDの違いとして正しいものはどれか。",
+   choices:["IBSは腸に実際の炎症が確認される疾患である","IBDは検査で異常が見つからない機能性疾患である","IBSは機能性疾患であり、IBDは腸粘膜に炎症・潰瘍が生じる疾患である","両者はまったく同じ疾患の別名である"],answer:2},
+  {section:null,course:"master",type:"ox",
+   q:"FMT（糞便微生物移植）は、腸活の一環として自宅で気軽に行える施術である。",
+   answer:false},
+  {section:null,course:"master",type:"fill",
+   q:"腸活指導者は診断をしない・薬の中止を勧めない・（　　）という3つの基本姿勢を持つことが重要である。",
+   answer:"医療を否定しない",keywords:["医療を否定しない","医療を否定","医療を批判しない"]},
+  {section:null,course:"master",type:"choice",
+   q:"FODMAPが特に有効とされる疾患として正しい組み合わせはどれか。",
+   choices:["大腸がんとクローン病","IBSとSIBO","潰瘍性大腸炎とFMT","リーキーガットとペット腸活"],answer:1},
+  {section:null,course:"master",type:"choice",
+   q:"腸活指導者が即座に医療機関への受診を勧めるべき「レッドフラッグ」症状として正しいものはどれか。",
+   choices:["3日排便がない","おならが多い","血便・黒色便","食後の軽い膨満感"],answer:2},
 ];
 
-let answers={};
+const courseLabel={basic:"ベーシック",advance:"アドバンス",master:"マスター"};
+const courseClass={basic:"tag-basic",advance:"tag-advance",master:"tag-master"};
+let answered={};
+let fillValues={};
 
-function build(){
-let html="";
-questions.forEach((q,i)=>{
-html+=`<div class="question-card">
-<div class="q-text">${i+1}. ${q.q}</div>`;
-
-if(q.choices){
-q.choices.forEach((c,ci)=>{
-html+=`<div class="choice" onclick="select(${i},${ci},this)">${c}</div>`;
-});
-}else if(q.type==="fill"){
-html+=`<input class="fill-input" oninput="fill(${i},this.value)">`;
-}else{
-html+=`<span class="ox-btn" onclick="select(${i},true,this)">○</span>
-<span class="ox-btn" onclick="select(${i},false,this)">×</span>`;
+function buildQuiz(){
+  const body=document.getElementById("quiz-body");
+  let html="";
+  questions.forEach((q,i)=>{
+    if(q.section) html+=`<div class="section-label">${q.section}</div>`;
+    const typeLabel=q.type==="choice"?"4択選択":q.type==="fill"?"穴埋め記述":"○×";
+    html+=`<div class="question-card" id="card-${i}">
+      <div class="q-header">
+        <span class="q-num">Q${i+1}</span>
+        <span class="q-text">${q.q}</span>
+        <span class="q-tags">
+          <span class="tag">${typeLabel}</span>
+          <span class="tag ${courseClass[q.course]}">${courseLabel[q.course]}</span>
+        </span>
+      </div>`;
+    if(q.type==="choice"){
+      html+=`<div class="choices">`;
+      ["A","B","C","D"].forEach((l,ci)=>{
+        html+=`<div class="choice" id="choice-${i}-${ci}" onclick="selectChoice(${i},${ci})">
+          <span class="choice-label">${l}</span>
+          <span class="choice-text">${q.choices[ci]}</span>
+        </div>`;
+      });
+      html+=`</div>`;
+    }else if(q.type==="fill"){
+      html+=`<div class="fill-wrap"><input class="fill-input" id="fill-${i}" type="text" placeholder="解答を入力してください" oninput="saveFill(${i})"/></div>`;
+    }else{
+      html+=`<div class="ox-choices">
+        <div class="ox-btn" id="ox-${i}-t" onclick="selectOX(${i},true)">○</div>
+        <div class="ox-btn" id="ox-${i}-f" onclick="selectOX(${i},false)">×</div>
+      </div>`;
+    }
+    html+=`<div class="feedback" id="fb-${i}"></div></div>`;
+  });
+  body.innerHTML=html;
 }
 
-html+=`</div>`;
-});
-document.getElementById("quiz").innerHTML=html;
+function selectChoice(qi,ci){
+  [0,1,2,3].forEach(i=>{const el=document.getElementById(`choice-${qi}-${i}`);if(el)el.className="choice";});
+  const el=document.getElementById(`choice-${qi}-${ci}`);
+  if(el)el.className="choice selected";
+  answered[qi]=ci;
 }
 
-function select(qi,val,el){
-answers[qi]=val;
+function selectOX(qi,val){
+  document.getElementById(`ox-${qi}-t`).className="ox-btn";
+  document.getElementById(`ox-${qi}-f`).className="ox-btn";
+  if(val)document.getElementById(`ox-${qi}-t`).className="ox-btn selected-o";
+  else document.getElementById(`ox-${qi}-f`).className="ox-btn selected-x";
+  answered[qi]=val;
 }
 
-function fill(qi,val){
-answers[qi]=val;
+function saveFill(qi){fillValues[qi]=document.getElementById(`fill-${qi}`).value;}
+
+function gradeAll(){
+  let correct=0;
+  let wrongItems=[];
+
+  questions.forEach((q,i)=>{
+    const fb=document.getElementById(`fb-${i}`);
+    fb.className="feedback";
+    let isCorrect=false;
+    let correctAnswer="";
+    let yourAnswer="（未回答）";
+
+    if(q.type==="choice"){
+      const ans=answered[i];
+      if(ans!==undefined) yourAnswer=`${["A","B","C","D"][ans]}：${q.choices[ans]}`;
+      [0,1,2,3].forEach(ci=>{
+        const el=document.getElementById(`choice-${i}-${ci}`);
+        if(!el)return;
+        el.className="choice";
+        if(ci===q.answer)el.className="choice correct";
+        else if(ans===ci&&ci!==q.answer)el.className="choice wrong";
+      });
+      correctAnswer=`${"ABCD"[q.answer]}：${q.choices[q.answer]}`;
+      if(ans===q.answer){isCorrect=true;fb.className="feedback show ok";fb.textContent="正解！";}
+      else{fb.className="feedback show ng";fb.textContent=`不正解。正解は ${correctAnswer}`;}
+    }else if(q.type==="fill"){
+      const val=(fillValues[i]||"").trim();
+      yourAnswer=val||"（未回答）";
+      const input=document.getElementById(`fill-${i}`);
+      const ok=q.keywords.some(k=>val.includes(k));
+      input.className=ok?"fill-input correct":"fill-input wrong";
+      correctAnswer=q.answer;
+      if(ok){isCorrect=true;fb.className="feedback show ok";fb.textContent="正解！";}
+      else{fb.className="feedback show ng";fb.textContent=`不正解。模範解答例：${q.answer}`;}
+    }else{
+      const ans=answered[i];
+      if(ans!==undefined)yourAnswer=ans?"○":"×";
+      const t=document.getElementById(`ox-${i}-t`);
+      const f=document.getElementById(`ox-${i}-f`);
+      t.className="ox-btn";f.className="ox-btn";
+      if(q.answer)t.className="ox-btn correct";else f.className="ox-btn correct";
+      correctAnswer=q.answer?"○":"×";
+      if(ans===q.answer){
+        isCorrect=true;
+        if(ans)t.className="ox-btn correct";else f.className="ox-btn correct";
+        fb.className="feedback show ok";fb.textContent="正解！";
+      }else{
+        if(ans===true)t.className="ox-btn wrong-selected";
+        else if(ans===false)f.className="ox-btn wrong-selected";
+        fb.className="feedback show ng";fb.textContent=`不正解。正解は${correctAnswer}`;
+      }
+    }
+
+    if(isCorrect)correct++;
+    else wrongItems.push({num:i+1,q:q.q,your:yourAnswer,correct:correctAnswer});
+  });
+
+  const pct=Math.round(correct/questions.length*100);
+  const scoreCard=document.getElementById("score-card");
+  scoreCard.className="score-card show";
+  document.getElementById("score-number").textContent=`${correct} / ${questions.length}`;
+  document.getElementById("score-pct").textContent=`正答率 ${pct}%`;
+  const msg=document.getElementById("score-message");
+  if(pct>=80){msg.textContent="合格ライン到達！おめでとうございます。";msg.className="score-message pass";}
+  else{msg.textContent="復習してから再挑戦しましょう。";msg.className="score-message fail";}
+  setTimeout(()=>{document.getElementById("result-fill").style.width=pct+"%";},100);
+
+  const reviewSection=document.getElementById("review-section");
+  if(wrongItems.length===0){
+    reviewSection.innerHTML=`<p class="perfect-msg">全問正解です！素晴らしい✨</p>`;
+  }else{
+    let reviewHTML=`<p class="review-title">復習リスト（${wrongItems.length}問）</p>`;
+    wrongItems.forEach(item=>{
+      reviewHTML+=`<div class="review-item">
+        <p class="review-q"><strong>Q${item.num}.</strong> ${item.q}</p>
+        <p class="review-your"><strong>あなたの解答：</strong>${item.your}</p>
+        <p class="review-a"><strong>正解：</strong>${item.correct}</p>
+      </div>`;
+    });
+    reviewSection.innerHTML=reviewHTML;
+  }
+
+  scoreCard.scrollIntoView({behavior:"smooth"});
 }
 
-function grade(){
-let score=0;
-let wrong=[];
-
-questions.forEach((q,i)=>{
-let ok=false;
-
-if(q.choices){
-ok = answers[i]===q.a;
-}else if(q.type==="fill"){
-ok = q.keywords?.some(k=>answers[i]?.includes(k));
-}else{
-ok = answers[i]===q.ox;
+function resetAll(){
+  answered={};fillValues={};
+  document.getElementById("score-card").className="score-card";
+  buildQuiz();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-if(ok) score++;
-else wrong.push(i+1);
-});
-
-document.getElementById("result").innerHTML=`${score} / ${questions.length}`;
-
-document.getElementById("review").innerHTML=
-wrong.length?`間違い: ${wrong.join(",")}`:"全問正解✨";
-}
-
-build();
+buildQuiz();
 </script>
-
 </body>
 </html>
